@@ -1,0 +1,43 @@
+name: Security Scan
+
+on:
+  push:
+    branches:
+      - main  # Altere para o nome da branch principal do seu repositório
+
+jobs:
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9  # Altere para a versão do Python que você está usando
+      - name: Debug SECRET_KEY
+        run: echo ${{ secrets.secret }}
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt  # Altere para o nome do seu arquivo requirements.txt, se necessário
+
+      - name: Run Bandit
+        run: |
+          pip install bandit
+          bandit -r .
+
+      - name: Start Django development server
+        run: |
+          export SECRET_KEY=${{ secrets.secret }}
+          python manage.py migrate # Realize as migrações, se necessário
+          python manage.py runserver &
+
+
+      - name: Stop Django development server
+        run: |
+          pkill -f "python manage.py runserver"
+
