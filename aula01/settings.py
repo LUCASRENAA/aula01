@@ -28,7 +28,6 @@ secret_key = os.getenv("SECRET_KEY")
 if secret_key is None:
     raise RuntimeError("Não conseguimos achar a chave.")
 
-SECRET_KEY = 'django-insecure-#^*66a8(9in^!k537!jfpb9k^^hy_ttm*8gd=n1%64y=ln^1k8'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
