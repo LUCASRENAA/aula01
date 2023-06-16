@@ -32,7 +32,6 @@ jobs:
 
       - name: Start Django development server
         run: |
-          export SECRET_KEY=${{ secrets.secret }}
           python manage.py migrate # Realize as migrações, se necessário
           python manage.py runserver &
 
