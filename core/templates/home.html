@@ -1,0 +1,20 @@
+<!DOCTYPE html><html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <title>My secure app</title>
+</head>
+
+<body>
+<p>
+   Ei, aqui é nosso aplicativo de fazer ping, digite um ip
+
+<form action ="/submit" method="post">{% csrf_token %}
+    <input name="ip" id="ip" type="text"><button>ok</button>
+    </form>
+</p>
+
+{{ resposta }}
+
+</body>
+
+</html>

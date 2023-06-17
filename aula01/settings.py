@@ -22,10 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 
 import os
+SECRET_KEY = os.getenv("SECRET_KEY")
 
-secret_key = os.getenv("SECRET_KEY")
-
-if secret_key is None:
+if SECRET_KEY is None:
     raise RuntimeError("Não conseguimos achar a chave.")
 
 
@@ -44,7 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'backend'
+    'backend',
+    'core'
 ]
 
 MIDDLEWARE = [
